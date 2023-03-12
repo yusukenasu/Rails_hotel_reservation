@@ -1,0 +1,8 @@
+<h2>ユーザー詳細</h2>
+
+<p>メールアドレス</p><p><%= @user.email %></p>
+<p>パスワード</p><p> ******** </p>
+
+
+<p><%= link_to "ログイン", new_user_session_path%></p>
+<p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
