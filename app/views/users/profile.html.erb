@@ -1,0 +1,12 @@
+<h2>ユーザープロフィール</h2>
+<p>アイコン画像</p>
+<p>名前</p><p><%= @user.name %></p>
+<p>自己紹介</p><p><%= @user.self_introduction %></p>
+
+<div>
+    <% if user_signed_in? && @user == current_user %>
+        <p><%= link_to "編集", users_profile_edit_path %></p>
+        <p><%= link_to "プロフィール", users_profile_path %></p>
+        <p><%= link_to "アカウント", users_account_path %></p>
+    <% end %>
+</div>

@@ -1,0 +1,22 @@
+<h2>ユーザープロフィール編集</h2>
+
+<%= current_user.name %>
+<%= current_user.self_introduction %>
+
+
+<%= form_with model: [:user, current_user], url: users_profile_update_path do |f| %>
+    <p><%= f.label :name, "名前" %></p>
+    <p><%= f.text_field :name %></p>
+
+    <p><%= f.label :self_introduction, "自己紹介" %></p>
+    <p><%= f.text_field :self_introduction %></p>
+
+    <p><%= f.submit "保存" %></p>
+
+<% end %>
+
+<div>
+    <% if user_signed_in? %>
+        <p><%= link_to "戻る", users_profile_path %></p>
+    <% end %>
+</div>

@@ -10,8 +10,21 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <header>
+    <div class = header_left>
+      <%= link_to "ホーム", rooms_path %>
+    </div>
+    <div class = header_right>
+      <% if user_signed_in? && @user == current_user %>
+        <%= @user.name %>
+      <% else %>
+        <p><%= link_to "新規登録", new_user_registration_path %></p>
+        <p><%= link_to "ログイン", new_user_session_path %></p>
+      <% end %>
+    </div>
+  </header>
+
   <body>
-    <%= link_to "ホーム", rooms_index_path %>
     <%= yield %>
   </body>
 </html>
