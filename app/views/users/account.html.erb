@@ -1,13 +1,14 @@
 <h2>ユーザー詳細</h2>
 
-<p>メールアドレス</p><p><%= @user.email %></p>
-<p>パスワード</p><p> ******** </p>
+<div class="userInfo">
+    <p>メールアドレス</p><p><%= @user.email %></p>
+    <p>パスワード</p><p> ******** </p>
+    <p><%= link_to "編集", edit_user_registration_path %></p>
+</div>
 
-<p><%= link_to "アカウント", users_account_path %></p>
-
-<div>
-    <% if user_signed_in? && @user == current_user %>
-        <p><%= link_to "編集", edit_user_registration_path %></p>
+<div class="userAccountProfile">
+    <% if user_signed_in? && @user == current_user %>       
+        <p><%= link_to "アカウント", users_account_path %></p>
         <p><%= link_to "プロフィール", users_profile_path %></p>
     <% end %>
 </div>

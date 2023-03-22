@@ -13,14 +13,22 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
 
- header{
-    background-color: #00ff7396;
-    display: flex;
-    justify-content: space-between;
+ li{
+   list-style: none;
  }
 
- .header_right{
-    display: flex;
-    justify-content: space-between;
+ .userInfo{
+   border:1px solid black;
+   width:400px;
+   padding:20px;
+   margin:0 20px;
+ }
+
+ .userAccountProfile{
+   border:1px solid black;
+   width: 10%;
+   padding:20px;
+   margin:20px;
  }
