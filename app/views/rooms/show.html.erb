@@ -1,0 +1,41 @@
+<h2>施設詳細</h2>
+
+<table>
+<tr>
+ <th>画像</th>
+  <% if @room.image.blank? %>
+  <% else %>
+    <td><%= image_tag @room.image.variant(resize: "50x50") %></td>
+  <% end %>
+<tr>
+
+<tr>
+ <th>施設名</th>
+ <td><%= @room.name %></td>
+<tr>
+
+<tr>
+ <th>施設情報</th>
+ <td><%= @room.information %></td>
+<tr>
+
+<tr>
+  <th>料金/日</th>
+  <td><%= @room.price %></td>
+<tr>
+
+<tr>
+ <th>住所</th>
+ <td><%= @room.address %></td>
+<tr>
+
+
+<tr>
+ <th>ユーザID（user_id）</th>
+ <td><%= @room.user_id %></td>
+<tr>
+</table>
+
+<%= link_to "編集", edit_room_path %>
+<%= link_to "削除", "/rooms/#{@room.id}", method: :delete, data: {confirm:"本当に削除しますか"} %>
+<%= link_to "戻る", rooms_path %>

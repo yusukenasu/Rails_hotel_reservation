@@ -1,10 +1,36 @@
-<h1>Roomsホーム画面</h1>
-<% if user_signed_in? %>
-    <p>施設の新規登録</p>
-    <p>予約済一覧</p>
-    <p>登録済一覧</p>
-<% else %>
-    <p>施設の新規登録</p>
-    <p>予約済一覧</p>
-    <p>登録済一覧</p>
-<% end %>
+<h2>登録済施設一覧</h2>
+<thead>
+   <tr>
+     <th>画像</th>
+     <th>id</th>
+     <th>施設名（詳細ページへのリンクにする）</th>
+     <th>施設情報</th>
+     <th>料金/日</th>
+     <th>住所</th>
+     <th>ユーザID（user_id）</th>
+     <th>作成日</th>
+   </tr>
+ </thead>
+ <br>
+ <tbody>
+ 
+   <% @rooms.each do |room| %>
+     <tr>
+       <td>  
+        <% if room.image.blank? %>
+        <% else %>
+            <td><%= image_tag room.image.variant(resize: "50x50") %></td>
+        <% end %>
+       </td>
+       <td><%= room.id %></td>
+       <td><%= link_to "#{room.name}", room %></td>
+       <td><%= room.information %></td>
+       <td><%= room.price %></td>
+       <td><%= room.address %></td>
+       <td><%= room.user_id %></td>
+       <td><%= room.created_at.to_s(:datetime_jp) %></td>
+     </tr>
+     <br>
+   <% end %>
+ </tbody>
+ <%= link_to "戻る", homes_path %>

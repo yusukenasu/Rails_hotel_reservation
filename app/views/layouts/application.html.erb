@@ -14,11 +14,14 @@
     <div class="header">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark text-white">
       <ul class="mr-auto">
-        <li><%= link_to 'TOP', rooms_path %></li>
+        <li><%= link_to 'TOP', homes_path %></li>
       </ul>
       <% if user_signed_in? %>
         <div>
+        <% if @user.image.blank? %>
+        <% else %>
         <p><%= image_tag @user.image.variant(resize: "50x50") %></p>
+        <% end %>
         </div>
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
@@ -26,6 +29,8 @@
           </button>
           <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton1">
             <li class="dropdown-item"><%= link_to "アカウント設定", users_account_path %></li>
+            <li class="dropdown-item"><%= link_to "施設の新規登録", new_room_path %></li>
+            <li class="dropdown-item"><%= link_to "登録済一覧", rooms_path %></li>
             <li class="dropdown-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
           </ul>
         </div>
