@@ -1,0 +1,26 @@
+<h2>検索結果</h2>
+
+<p>検索結果</span><%= @rooms.count %><span>件</p>
+
+<% if @rooms.present? %>
+    <%= @rooms.each do |room| %> 
+    <tr>
+        <td>
+        <% if room.image.blank? %>
+        <% else %>
+            <td><%= image_tag room.image.variant(resize: "50x50") %></td>
+        <% end %>
+        </td>
+        <td><%= room.id %></td>
+        <td><%= link_to "#{room.name}", room %></td>
+        <td><%= room.information %></td>
+        <td><%= room.price %></td>
+        <td><%= room.address %></td>
+        <td><%= room.user_id %></td>
+        <td><%= room.created_at.to_s(:datetime_jp) %></td>
+    </tr>
+    <br>
+  <% end %>
+<% else %>
+  <p>検索結果はありません</p>
+<% end %>

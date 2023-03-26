@@ -42,4 +42,11 @@ class RoomsController < ApplicationController
     @room.destroy
     redirect_to rooms_path
   end
+
+  def search
+    @user = current_user
+    @q = Room.ransack(params[:q])
+    @rooms = @q.result(distinct: true)
+  end
+
 end
