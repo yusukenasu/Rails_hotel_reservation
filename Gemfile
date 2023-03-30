@@ -63,3 +63,5 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 
 gem 'ransack'
+
+gem 'pry-rails'

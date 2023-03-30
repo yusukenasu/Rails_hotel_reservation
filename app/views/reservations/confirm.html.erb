@@ -1,0 +1,17 @@
+<h2>予約確認画面</h2>
+<tr>
+      <td><%= @reservation.check_in %></td>
+      <td><%= @reservation.check_out %></td>
+</tr>
+
+<%= form_with model: @reservation do |f| %>
+
+    <%= f.hidden_field :check_in, value: @reservation.check_in %>
+    <%= f.hidden_field :check_out, value: @reservation.check_out %>
+    <%= f.hidden_field :number_of_people, value: @reservation.number_of_people %>
+    <%= f.hidden_field :user_id, value: @user.id %>
+    <%= f.hidden_field :room_id, value: @room.id %>
+    <%= f.submit "予約する" %>
+
+<% end %>
+
