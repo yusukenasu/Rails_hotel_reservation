@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
   def index
     @user = current_user
-    @reservations = Reservation.all
+    @reservations = Reservation.where(user_id: current_user.id).includes(:user).order("created_at DESC")
   end
 
   def new
@@ -10,9 +10,10 @@ class ReservationsController < ApplicationController
   end
   
   def create
+    @user = current_user
     @reservation = Reservation.new(reservation_params)
-    if @reservation.save!
-      redirect_to homes_path
+    if @reservation.save
+      redirect_to reservations_path
     else
       render "new"
     end

@@ -10,11 +10,13 @@ class RoomsController < ApplicationController
   end
 
   def create
+    @user = current_user
     @room = Room.new(params.require(:room).permit(:name, :information, :price, :address, :user_id, :image))
     if @room.save
       redirect_to homes_path
     else
       render "new"
+      
     end
   end
 

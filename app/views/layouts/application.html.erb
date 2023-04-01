@@ -6,21 +6,22 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <header class="sticky-top">
     <div class="header">
     <nav class="navbar navbar-expand-md navbar-dark bg-dark text-white">
       <ul class="mr-auto">
-        <li><%= link_to 'TOP', homes_path %></li>
+        <li><%= link_to 'HotelReservation', homes_path %></li>
       </ul>
       <% if user_signed_in? %>
-        <div>
+        <div class="userIcon">
         <% if @user.image.blank? %>
+        <p><%= image_tag 'user_img.png', size: "40x40" %></p>
         <% else %>
-        <p><%= image_tag @user.image.variant(resize: "50x50") %></p>
+        <p><%= image_tag @user.image.variant(resize: "40x40") %></p>
         <% end %>
         </div>
         <div class="dropdown">
@@ -28,9 +29,10 @@
             <%= @user.name %>
           </button>
           <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton1">
-            <li class="dropdown-item"><%= link_to "アカウント設定", users_account_path %></li>
             <li class="dropdown-item"><%= link_to "施設の新規登録", new_room_path %></li>
+            <li class="dropdown-item"><%= link_to "予約済一覧", reservations_path %></li>
             <li class="dropdown-item"><%= link_to "登録済一覧", rooms_path %></li>
+            <li class="dropdown-item"><%= link_to "アカウント設定", users_account_path %></li>
             <li class="dropdown-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
           </ul>
         </div>

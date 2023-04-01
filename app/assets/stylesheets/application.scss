@@ -15,6 +15,17 @@
  */
  @import "bootstrap";
 
+
+ /*共通*/
+h1, h2{
+  margin: 10px;
+  font-family: sans-serif;
+}
+
+ts, td, tr{
+  text-align: center;
+}
+
  li{
    list-style: none;
  }
@@ -32,3 +43,32 @@
    padding:20px;
    margin:20px;
  }
+
+ /*ヘッダー*/
+ .mr-auto{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 30px;
+  text-decoration: none;
+ }
+
+ .dropdown{
+  margin:10px 20px;
+ }
+
+ /*Home画面*/
+.hotelReservationTitle{
+  font-family: 'Courier New', Courier, monospace;
+  margin:50px 20px;
+  text-align: center;
+}
+
+ .searchForm{
+  margin: 20px;
+  text-align: center;
+ }
+
+/*テーブル*/
+.table{
+  background-color: #d5eded;
+}
+

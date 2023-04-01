@@ -2,7 +2,8 @@
 
 <div class="userInfo">
     <p>アイコン画像</p>
-    <% if @user.image.blank? %>        
+    <% if @user.image.blank? %>      
+    <p><%= image_tag 'user_img.png', size: "50x50" %></p>  
     <% else %>
         <p><%= image_tag @user.image.variant(resize: "100x100") %></p>
     <% end %>
@@ -17,3 +18,5 @@
         <p><%= link_to "プロフィール", users_profile_path %></p>            
     <% end %>
 </div>
+
+<%= link_to "戻る", :back %>

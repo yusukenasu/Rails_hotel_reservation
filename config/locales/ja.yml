@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+  errors:
+    messages:
+      not_saved: 入力内容に不備があります。下記内容を確認して下さい。
