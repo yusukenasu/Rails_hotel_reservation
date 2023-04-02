@@ -16,7 +16,6 @@ class RoomsController < ApplicationController
       redirect_to homes_path
     else
       render "new"
-      
     end
   end
 

@@ -16,5 +16,4 @@ class ApplicationController < ActionController::Base
         homes_path
     end
 
-
 end

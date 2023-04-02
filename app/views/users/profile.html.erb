@@ -1,16 +1,26 @@
 <h2>ユーザープロフィール</h2>
 
-<div class="userInfo">
-    <p>アイコン画像</p>
-    <% if @user.image.blank? %>      
-    <p><%= image_tag 'user_img.png', size: "50x50" %></p>  
-    <% else %>
-        <p><%= image_tag @user.image.variant(resize: "100x100") %></p>
-    <% end %>
-    <p>名前</p><p><%= @user.name %></p>
-    <p>自己紹介</p><p><%= @user.self_introduction %></p>
+
+    <table border="1" class="table">
+        <tr>
+            <th>アイコン画像</th>
+            <% if @user.image.blank? %>      
+                <td><%= image_tag 'user_img.png', size: "50x50" %></td>  
+            <% else %>
+                <td><%= image_tag @user.image.variant(resize: "50x50") %></td>
+            <% end %>
+        </tr>
+        <tr>
+            <th>名前</th>
+            <td><%= @user.name %></td>
+        </tr>
+        <tr>
+            <th>自己紹介</th>
+            <td><%= @user.self_introduction %></td>
+        </tr>
+    </table>
     <p><%= link_to "編集", users_profile_edit_path %></p>
-</div>
+
 
 <div class="userAccountProfile">
     <% if user_signed_in? && @user == current_user %>
