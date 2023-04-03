@@ -16,6 +16,8 @@ class UsersController < ApplicationController
     @user = current_user
     if @user.update(user_params)
       redirect_to users_profile_path
+    else
+      render "users/profile_edit"
     end
   end
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root :to => 'homes#index'
   get 'homes/index' ,to: 'homes#index'
   get 'users/profile_edit' ,to: 'users#profile_edit'
   patch 'users/profile_update' ,to: 'users#profile_update'

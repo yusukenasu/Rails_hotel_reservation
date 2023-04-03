@@ -26,7 +26,7 @@
 </table>
 
 <% if user_signed_in? %>
-  <% if @user.id == @room.id %>
+  <% if @user.id == @room.user.id %>
     <%= link_to "編集", edit_room_path %>
     <%= link_to "削除", "/rooms/#{@room.id}", method: :delete, data: {confirm:"本当に削除しますか"} %>
   <% else %>
