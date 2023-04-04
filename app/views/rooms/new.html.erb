@@ -1,0 +1,43 @@
+<h2>施設新規登録</h2>
+
+<%= form_with model: @room do |f| %>
+  <table border="1" class="table">
+    <tr>
+      <th><%= f.label :name, "施設名 *" %></th>
+      <td><%= f.text_field :name %></td>
+    </tr> 
+    <tr>
+      <th><%= f.label :information, "施設情報 *" %></th>
+      <td><%= f.text_area :information %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :price, "料金/日 *" %></th>
+      <td><%= f.number_field :price %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :address, "住所 *" %></th>
+      <td><%= f.text_field :address %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :image, "画像" %></th>
+      <td><%= f.file_field :image %></td>
+    </tr>
+  </table>
+  <%= f.hidden_field :user_id, value: @user.id %>
+  <p>◆ *は必須項目です。</p>
+  <p>◆ 料金は半角数字で入力して下さい。</p>
+  <%= f.submit "登録する" %>
+
+  <% if @room.errors.any? %>
+    <div class="error_exclamation">
+      <ul>
+      <% @room.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<% end %>
+
+<%= link_to "戻る", :back %>

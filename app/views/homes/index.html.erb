@@ -1,0 +1,19 @@
+<h1 class="hotelReservationTitle">HotelReservation</h1>
+
+<div class="searchForm">
+    <p>エリアで検索</p>
+    <%= search_form_for @q, url: rooms_search_path do |f| %>
+        <% f.label :address_cont %>
+        <%= f.search_field :address_cont, :placeholder => "エリア名を入力"  %>
+        <%= f.submit %>
+    <% end %>
+</div>
+
+<div class="searchForm">
+    <p>フリーワードで検索</P>
+    <%= search_form_for @q, url: rooms_search_path do |f| %>
+        <% f.label :name_or_information_cont %>
+        <%= f.search_field :name_or_information_cont, :placeholder => "キーワードを入力"  %>
+        <%= f.submit %>
+    <% end %>
+</div>

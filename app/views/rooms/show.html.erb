@@ -1,0 +1,58 @@
+<h2>施設詳細</h2>
+
+<% if @room.image.blank? %>
+  <p><%= image_tag 'institution.png', size: "400x200" %></p>
+<% else %>
+  <td><%= image_tag @room.image.variant(resize: "400x200") %></td>
+<% end %>
+
+<table border="1" class="table">
+  <tr>
+    <th>施設名</th>
+    <td><%= @room.name %></td>
+  </tr>
+  <tr>
+    <th>施設情報</th>
+    <td><%= @room.information %></td>
+  </tr>
+  <tr>
+    <th>料金（円/日）</th>
+    <td><%= @room.price %></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><%= @room.address %></td>
+  </tr>
+</table>
+
+<% if user_signed_in? %>
+  <% if @user.id == @room.user.id %>
+    <%= link_to "編集", edit_room_path %>
+    <%= link_to "削除", "/rooms/#{@room.id}", method: :delete, data: {confirm:"本当に削除しますか"} %>
+  <% else %>
+  <% end %>
+
+  <%= form_with model: @reservation, url:confirm_reservation_path do |f| %>
+    <table border="1" class="table">
+      <tr>
+        <th><%= f.label :check_in, "チェックイン *" %></th>
+        <td><%= f.date_field :check_in %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :check_out, "チェックアウト *" %></th>
+        <td><%= f.date_field :check_out %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :number_of_people, "人数 *" %></th>
+        <td><%= f.number_field :number_of_people, min: 1 %></td>
+      </tr>
+    </table>
+    <%= f.hidden_field :user_id, value: @user.id %>
+    <%= f.hidden_field :room_id, value: @room.id %>
+    <p>◆ *は必須項目です。</p>
+    <p>◆ 人数は半角数字で入力して下さい。</p>
+    <%= f.submit "予約する" %>
+  <% end %>
+<% end %>
+
+<%= link_to "戻る", :back %>

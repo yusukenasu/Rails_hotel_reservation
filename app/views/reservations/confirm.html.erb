@@ -1,0 +1,92 @@
+<h2>予約確認画面</h2>
+
+<% if @reservation.check_in.blank? || 
+@reservation.check_out.blank? || 
+@reservation.number_of_people.blank? || 
+@reservation.check_in > @reservation.check_out %>
+
+  <% if @room.image.blank? %>
+    <%= image_tag 'institution.png', size: "400x200" %>
+  <% else %>
+    <%= image_tag @room.image.variant(resize: "400x200") %>
+  <% end %>
+
+  <table border="1" class="table">
+    <tr>    
+      <th>施設名</th>
+      <td><%= @room.name %></td>
+    </tr>
+    <tr>
+      <th>施設情報</th>
+      <td><%= @room.information %></td>
+    </tr>
+    <tr>
+      <th>料金（円/日）</th>
+      <td><%= @room.price %></td>
+    </tr>
+    <tr>
+      <th>住所</th>
+      <td><%= @room.address %></td>
+    </tr>
+  </table>
+
+  <% if @user.id == @room.id %>
+    <%= link_to "編集", edit_room_path %>
+    <%= link_to "削除", "/rooms/#{@room.id}", method: :delete, data: {confirm:"本当に削除しますか"} %>
+    <%= link_to "戻る", :back %>
+  <% else %>
+  <% end %>
+
+  <%= form_with model: @reservation, url:confirm_reservation_path do |f| %>
+    <table border="1" class="table">
+      <tr>
+        <th><%= f.label :check_in, "チェックイン *" %></th>
+        <td><%= f.date_field :check_in %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :check_out, "チェックアウト *" %></th>
+        <td><%= f.date_field :check_out %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :number_of_people, "人数 *" %></th>
+        <td><%= f.number_field :number_of_people %></td>
+      </tr>
+    </table>
+    <%= f.hidden_field :user_id, value: @user.id %>
+    <%= f.hidden_field :room_id, value: @room.id %>
+    <span class="error_masseage">◆ 入力内容に不備があります。入力内容を確認して下さい。</span>
+    <p>◆ *は必須項目です。</p>
+    <p>◆ 人数は半角数字で入力して下さい。</p>
+    <%= f.submit "予約する" %>
+  <% end %>
+
+<% else %>
+  <table border="1"  class="table">
+    <tr>
+      <td>チェックイン</td>
+      <td>チェックアウト</td>
+      <td>宿泊日数</td>
+      <td>人数</td>
+      <td>支払い金額</td>
+    </tr>
+    <br>
+    <tr>
+      <td><%= @reservation.check_in.strftime('%Y/%m/%d') %></td>
+      <td><%= @reservation.check_out.strftime('%Y/%m/%d') %></td>
+      <td><%= @reservation.check_out.day - @reservation.check_in.day %></td>
+      <td><%= @reservation.number_of_people %>
+      <td><%= @reservation.room.price*(@reservation.check_out.day - @reservation.check_in.day)*@reservation.number_of_people %>
+    </tr>
+
+    <%= form_with model: @reservation do |f| %>
+      <%= f.hidden_field :check_in, value: @reservation.check_in %>
+      <%= f.hidden_field :check_out, value: @reservation.check_out %>
+      <%= f.hidden_field :number_of_people, value: @reservation.number_of_people %>
+      <%= f.hidden_field :user_id, value: @user.id %>
+      <%= f.hidden_field :room_id, value: @room.id %>        
+      <%= f.submit "予約する" %>
+    <% end %>
+  </table>
+<% end %>
+
+<%= link_to "戻る", :back %>
