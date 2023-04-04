@@ -31,6 +31,7 @@ class RoomsController < ApplicationController
   end
 
   def update
+    @user = current_user
     @room = Room.find(params[:id])
     if @room.update(params.require(:room).permit(:name, :information, :price, :address, :user_id, :image))
       redirect_to rooms_path

@@ -16,6 +16,16 @@
         </tr>
     </table>
     <%= f.submit "保存" %>
+
+    <% if @user.errors.any? %>
+    <div class="error_exclamation">
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
 <% end %>
 
 <%= link_to "戻る", users_profile_path %>
