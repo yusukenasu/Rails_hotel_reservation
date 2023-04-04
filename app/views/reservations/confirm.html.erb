@@ -40,21 +40,23 @@
   <%= form_with model: @reservation, url:confirm_reservation_path do |f| %>
     <table border="1" class="table">
       <tr>
-        <th><%= f.label :check_in, "チェックイン" %></th>
+        <th><%= f.label :check_in, "チェックイン *" %></th>
         <td><%= f.date_field :check_in %></td>
       </tr>
       <tr>
-        <th><%= f.label :check_out, "チェックアウト" %></th>
+        <th><%= f.label :check_out, "チェックアウト *" %></th>
         <td><%= f.date_field :check_out %></td>
       </tr>
       <tr>
-        <th><%= f.label :number_of_people, "人数" %></th>
-        <td><%= f.text_field :number_of_people %></td>
+        <th><%= f.label :number_of_people, "人数 *" %></th>
+        <td><%= f.number_field :number_of_people %></td>
       </tr>
     </table>
     <%= f.hidden_field :user_id, value: @user.id %>
     <%= f.hidden_field :room_id, value: @room.id %>
-    <p>※入力内容に不備があります。入力内容を確認して下さい。</p>
+    <span class="error_masseage">◆ 入力内容に不備があります。入力内容を確認して下さい。</span>
+    <p>◆ *は必須項目です。</p>
+    <p>◆ 人数は半角数字で入力して下さい。</p>
     <%= f.submit "予約する" %>
   <% end %>
 
